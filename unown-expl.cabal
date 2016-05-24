@@ -1,0 +1,49 @@
+name:                unown-expl
+version:             0.1.0
+homepage:            https://github.com/ncaq/unown-expl#readme
+license:             BSD3
+author:              ncaq
+maintainer:          ncaq@ncaq.net
+build-type:          Simple
+cabal-version:       >=1.10
+
+library
+  hs-source-dirs:      src
+  exposed-modules:     Application
+  build-depends:       base
+                     , classy-prelude
+                     , parsec
+                     , transformers
+  default-language:    Haskell2010
+  default-extensions:  NoImplicitPrelude
+                       OverloadedStrings
+                       QuasiQuotes
+                       TemplateHaskell
+
+executable unown-expl
+  hs-source-dirs:      app
+  main-is:             Main.hs
+  ghc-options:         -threaded -rtsopts -with-rtsopts=-N
+  build-depends:       base
+                     , unown-expl
+  default-language:    Haskell2010
+
+test-suite test
+  type:                exitcode-stdio-1.0
+  hs-source-dirs:      test
+  main-is:             ApplicationSpec.hs
+  build-depends:       base
+                     , unown-expl
+                     , classy-prelude
+                     , hspec
+                     , transformers
+  ghc-options:         -threaded -rtsopts -with-rtsopts=-N
+  default-language:    Haskell2010
+  default-extensions:  NoImplicitPrelude
+                       OverloadedStrings
+                       QuasiQuotes
+                       TemplateHaskell
+
+source-repository head
+  type:     git
+  location: https://github.com/ncaq/unown-expl
