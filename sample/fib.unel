@@ -1,0 +1,12 @@
+give increase make !
+tell observe make !
+tell direct p i i i i m i i i i i i i i m !
+
+give increase make !
+tell observe make !
+tell direct p i i i i m i i i i i i i i m !
+
+keep zoom observe make q p i i m i i i i i m i i i i i m x
+     give join observe make observe increase make x
+     tell observe make
+     tell direct p i i i i m i i i i i i i i m
