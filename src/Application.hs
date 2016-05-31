@@ -54,20 +54,20 @@ parseExpr :: Parser Unown
 parseExpr = spaces *> (parsePrefix >>= (\l -> parseInfixR l <|> return l))
 
 parsePrefix :: Parser Unown
-parsePrefix = many letter <* spaces >>= c
-  where c ('d' : _) = Direct   <$> parsePrefix
-        c ('g' : _) = Give     <$> parsePrefix
-        c ('i' : _) = Increase <$> parsePrefix
-        c ('j' : _) = Join     <$> parsePrefix <*> parsePrefix
-        c ('k' : _) = Keep     <$> parsePrefix <*> parsePrefix
-        c ('m' : _) = return       Make
-        c ('o' : _) = Observe  <$> parsePrefix
-        c ('p' : _) = Perform  <$> parsePrefix <*> parsePrefix
-        c ('q' : _) = Quicken  <$> parsePrefix <*> parsePrefix
-        c ('t' : _) = Tell     <$> parsePrefix
-        c ('x' : _) = XXXXX    <$> parsePrefix <*> parsePrefix
-        c ('z' : _) = Zoom     <$> parsePrefix <*> parsePrefix
-        c        _  = unexpected "prefix"
+parsePrefix = letter <* try (many letter) <* spaces >>= c
+  where c 'd' = Direct   <$> parsePrefix
+        c 'g' = Give     <$> parsePrefix
+        c 'i' = Increase <$> parsePrefix
+        c 'j' = Join     <$> parsePrefix <*> parsePrefix
+        c 'k' = Keep     <$> parsePrefix <*> parsePrefix
+        c 'm' = return       Make
+        c 'o' = Observe  <$> parsePrefix
+        c 'p' = Perform  <$> parsePrefix <*> parsePrefix
+        c 'q' = Quicken  <$> parsePrefix <*> parsePrefix
+        c 't' = Tell     <$> parsePrefix
+        c 'x' = XXXXX    <$> parsePrefix <*> parsePrefix
+        c 'z' = Zoom     <$> parsePrefix <*> parsePrefix
+        c  _  = unexpected "prefix"
 
 parseInfixR :: Unown -> Parser Unown
 parseInfixR l = char '!' *> spaces *> (Exclaim l <$> parseExpr)
