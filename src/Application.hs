@@ -42,7 +42,7 @@ data UnownValue = UnownBool Bool | UnownInt Int | UnownString String | UnownList
 type UnownStateIO a = StateT [a] IO a
 
 appMain :: IO ()
-appMain = hGetContents stdin >>= exec
+appMain = getContents >>= exec . unpack
 
 exec :: String -> IO ()
 exec = either print (\r -> evalStateT (eval r) [] >> putStrLn "") . readExpr
