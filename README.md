@@ -14,7 +14,7 @@
 
 一定数のフィボナッチ数列を出力するソースコードです。
 
-<example/fib.unel>
+[example/fib.unel](example/fib.unel)
 
 ~~~console
 2022-04-20T22:22:29 ❯ cat example/fib.unel|stack run unown-expl
